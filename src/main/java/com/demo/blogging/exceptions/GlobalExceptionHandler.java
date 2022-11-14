@@ -14,14 +14,27 @@ import com.demo.blogging.payloads.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	
+
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<com.demo.blogging.payloads.ApiResponse> resourceNotFoundExcepitonHandler(ResourceNotFoundException ex){
-		String message=ex.getMessage();
+	public ResponseEntity<com.demo.blogging.payloads.ApiResponse> resourceNotFoundExcepitonHandler(
+			ResourceNotFoundException ex) {
+		String message = ex.getMessage();
 		ApiResponse apiResponse = new ApiResponse(message, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
-		
+
 	}
-	
+
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<Map<String, String>> methodArgumentNotValidExceptionHandler(
+			MethodArgumentNotValidException ex) {
+
+		Map<String, String> resp = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
+			String message = error.getDefaultMessage();
+			resp.put(fieldName, message);
+		});
+		return new ResponseEntity<Map<String, String>>(resp, HttpStatus.BAD_REQUEST);
+	}
 
 }

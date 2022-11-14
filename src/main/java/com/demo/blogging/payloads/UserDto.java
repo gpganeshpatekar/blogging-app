@@ -1,12 +1,23 @@
 package com.demo.blogging.payloads;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class UserDto {
 	
 	private int id;
+	@NotEmpty
+	@Size(min = 4, max = 20, message = "name must be min of 4 characters and max of 20 characters")
 	private String name;
+	@Email
+	@Pattern(regexp = "[a-zA-Z0-9][a-zA-Z0-9_.]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+",message = "please enter valid email id.")
 	private String email;
+	@NotEmpty
+	@Size(min = 6,message = "password must be min of 6 characters")
 	private String password;
+	@NotEmpty
 	private String about;
 	private boolean active = true;
 	

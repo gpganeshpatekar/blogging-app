@@ -31,7 +31,7 @@ public class UserController {
 	
 //	to create user
 	@PostMapping(value = "/", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 
 		UserDto createUser = this.userService.createUser(userDto);
 		return new ResponseEntity<UserDto>(createUser, HttpStatus.CREATED);
@@ -61,13 +61,13 @@ public class UserController {
 	
 //	to update user
 	@PutMapping(value = "/{id}",consumes = "application/json", produces = "application/json")
-	public ResponseEntity<UserDto> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> updateUser(@PathVariable Integer id,@Valid @RequestBody UserDto userDto) {
 		UserDto updateUser = this.userService.updateUser(id, userDto);
 		return new ResponseEntity<UserDto>(updateUser, HttpStatus.OK);
 	}
 //	to deactivate user (soft delete)
 	@PutMapping(value = "/delete/{id}")
-	public ResponseEntity<ApiResponse> deactivateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
+	public ResponseEntity<ApiResponse> deactivateUser(@PathVariable Integer id,@Valid @RequestBody UserDto userDto) {
 		userDto.setName(userDto.getName());
 		userDto.setEmail(userDto.getEmail());
 		userDto.setPassword(userDto.getPassword());
@@ -77,7 +77,7 @@ public class UserController {
 	}
 //	to reactivate user
 	@PutMapping(value = "/active/{id}",produces = "application/json")
-	public ResponseEntity<UserDto> setUserActive(@PathVariable Integer id, @RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> setUserActive(@PathVariable Integer id,UserDto userDto) {
 		userDto.setName(userDto.getName());
 		userDto.setEmail(userDto.getEmail());
 		userDto.setPassword(userDto.getPassword());
