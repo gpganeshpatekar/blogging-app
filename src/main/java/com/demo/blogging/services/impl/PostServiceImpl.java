@@ -111,9 +111,13 @@ public class PostServiceImpl implements PostService {
 
 //	to search posts be keyword
 	@Override
-	public List<PostDto> searchByTitle(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostDto> searchByPostTitle(String keywords) {
+		List<Post> postList = this.postRepository.findByPostTitleContaining("%"+keywords+"%");
+		List<PostDto> posts = postList.stream().map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		if(posts.isEmpty()) {
+			throw new ResourceNotFoundException("post not found with search keywords : "+keywords);
+		}
+		return posts;
 	}
 
 //	to update post

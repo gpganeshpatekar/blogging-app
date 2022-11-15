@@ -20,7 +20,7 @@ public interface PostService {
 //		to get all post by user
 		List<PostDto> getPostsByUser(Integer userId);
 //		to search posts be keyword
-		List<PostDto> searchByTitle(String keyword);
+		List<PostDto> searchByPostTitle(String keywords);
 //		to update post
 		PostDto updatePost(PostDto postDto, Integer postId);
 //		to delete post
