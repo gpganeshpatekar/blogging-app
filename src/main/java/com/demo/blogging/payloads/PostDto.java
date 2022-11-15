@@ -1,6 +1,8 @@
 package com.demo.blogging.payloads;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -29,6 +31,8 @@ public class PostDto {
 	private LocalDate updatedDate;
 	
 	private UserDto user;
+	
+	private Set<CommentDto> comments = new HashSet<>();
 	
 	public Integer getPostId() {
 		return postId;
@@ -93,6 +97,15 @@ public class PostDto {
 	public void setUser(UserDto user) {
 		this.user = user;
 	}
+
+	public Set<CommentDto> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<CommentDto> comments) {
+		this.comments = comments;
+	}
+	
 	
 	
 

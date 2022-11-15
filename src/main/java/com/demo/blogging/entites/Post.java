@@ -1,6 +1,8 @@
 package com.demo.blogging.entites;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -51,6 +53,9 @@ public class Post {
 	//mapping
 	@ManyToOne
 	private User user;
+	
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private Set<Comment> comments = new HashSet<>();
 
 	public Integer getPostId() {
 		return postId;
@@ -115,6 +120,16 @@ public class Post {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	
 
 	
 	
