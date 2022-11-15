@@ -1,12 +1,17 @@
 package com.demo.blogging.entites;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -31,6 +36,9 @@ public class User {
 	@UpdateTimestamp
 	@Column(insertable = false)
 	private LocalDate updatedDate;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Set<Post> posts = new HashSet<>();
 	
 	public User(int id, String name, String email, String password, String about, boolean active) {
 		super();
@@ -94,10 +102,29 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
-	
-	
-	
+
+	public LocalDate getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDate createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDate getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(LocalDate updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
 
 }

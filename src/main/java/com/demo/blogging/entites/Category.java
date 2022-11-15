@@ -1,11 +1,17 @@
 package com.demo.blogging.entites;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +23,9 @@ public class Category {
 	private Integer categoryId;
 	private String categoryTitle;
 	private String categoryDescription;
+	
+	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Set<Post> posts = new HashSet<>();
 	
 	public Category() {
 		super();
@@ -46,8 +55,13 @@ public class Category {
 	public void setCategoryDescription(String categoryDescription) {
 		this.categoryDescription = categoryDescription;
 	}
-	
-	
-	
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
 
 }
