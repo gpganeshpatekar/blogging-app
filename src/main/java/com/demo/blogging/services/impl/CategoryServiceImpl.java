@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.demo.blogging.entities.Category;
 import com.demo.blogging.exceptions.ResourceNotFoundException;
-import com.demo.blogging.entites.Category;
 import com.demo.blogging.payloads.CategoryDto;
 import com.demo.blogging.payloads.CategoryResponse;
 import com.demo.blogging.repositories.CategoryRepository;

@@ -1,4 +1,4 @@
-package com.demo.blogging.entites;
+package com.demo.blogging.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

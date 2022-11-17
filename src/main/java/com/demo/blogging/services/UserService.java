@@ -7,6 +7,8 @@ import com.demo.blogging.payloads.UserDto;
 public interface UserService {
 //	to create user
 	UserDto createUser(UserDto userDto);
+//	to register new user
+	UserDto registerNewUser(UserDto userDto);
 //	to get all list of users
 	List<UserDto> getListOfUsers();
 //	to get all list of active users

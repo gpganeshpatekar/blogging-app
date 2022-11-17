@@ -1,4 +1,4 @@
-package com.demo.blogging.entites;
+package com.demo.blogging.entities;
 
 import java.time.LocalDate;
 import java.util.HashSet;

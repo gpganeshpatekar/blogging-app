@@ -7,8 +7,8 @@ import java.util.Set;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.demo.blogging.entites.Category;
-import com.demo.blogging.entites.User;
+import com.demo.blogging.entities.Category;
+import com.demo.blogging.entities.User;
 
 public class PostDto {
 	

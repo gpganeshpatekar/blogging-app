@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.demo.blogging.entites.Category;
-import com.demo.blogging.entites.Post;
-import com.demo.blogging.entites.User;
+import com.demo.blogging.entities.Category;
+import com.demo.blogging.entities.Post;
+import com.demo.blogging.entities.User;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {

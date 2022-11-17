@@ -11,10 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.demo.blogging.entities.Category;
+import com.demo.blogging.entities.Post;
+import com.demo.blogging.entities.User;
 import com.demo.blogging.exceptions.ResourceNotFoundException;
-import com.demo.blogging.entites.Category;
-import com.demo.blogging.entites.Post;
-import com.demo.blogging.entites.User;
 import com.demo.blogging.payloads.PostDto;
 import com.demo.blogging.payloads.PostResponse;
 import com.demo.blogging.repositories.CategoryRepository;

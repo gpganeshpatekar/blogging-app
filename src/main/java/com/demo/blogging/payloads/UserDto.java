@@ -1,9 +1,16 @@
 package com.demo.blogging.payloads;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.demo.blogging.entities.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserDto {
 	
@@ -20,6 +27,8 @@ public class UserDto {
 	@NotEmpty
 	private String about;
 	private boolean active = true;
+	
+	private Set<RoleDto> roles = new HashSet<>();
 	
 	public UserDto(int id, String name, String email, String password, String about, boolean active) {
 		super();
@@ -60,10 +69,11 @@ public class UserDto {
 		this.email = email;
 	}
 
+	@JsonIgnore // password won't get
 	public String getPassword() {
 		return password;
 	}
-
+	@JsonProperty // but you can set password
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -83,6 +93,17 @@ public class UserDto {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	public Set<RoleDto> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RoleDto> roles) {
+		this.roles = roles;
+	}
+
+	
+	
 	
 	
 	

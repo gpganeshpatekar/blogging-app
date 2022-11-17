@@ -3,6 +3,7 @@ package com.demo.blogging.exceptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -16,11 +17,20 @@ import com.demo.blogging.payloads.ApiResponse;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<com.demo.blogging.payloads.ApiResponse> resourceNotFoundExcepitonHandler(
+	public ResponseEntity<ApiResponse> resourceNotFoundExcepitonHandler(
 			ResourceNotFoundException ex) {
 		String message = ex.getMessage();
 		ApiResponse apiResponse = new ApiResponse(message, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
+
+	}
+	// for handling duplicate username(email) exception
+	@ExceptionHandler(DuplicateUserEmailException.class)
+	public ResponseEntity<ApiResponse> handleDuplicateUserEmailException(
+			DuplicateUserEmailException ex) {
+//		String message = "User Is Already Available With A Given Email Id.. Please Try With Different Email Id..";
+		ApiResponse apiResponse = new ApiResponse(ex.getMessage(), false);
+		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
 

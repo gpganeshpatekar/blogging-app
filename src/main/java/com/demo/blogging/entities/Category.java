@@ -1,4 +1,4 @@
-package com.demo.blogging.entites;
+package com.demo.blogging.entities;
 
 import java.util.HashSet;
 import java.util.Set;

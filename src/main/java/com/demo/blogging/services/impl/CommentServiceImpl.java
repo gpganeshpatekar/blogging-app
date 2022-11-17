@@ -4,8 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.blogging.entites.Comment;
-import com.demo.blogging.entites.Post;
+import com.demo.blogging.entities.Comment;
+import com.demo.blogging.entities.Post;
 import com.demo.blogging.exceptions.ResourceNotFoundException;
 import com.demo.blogging.payloads.CommentDto;
 import com.demo.blogging.repositories.CommentRepository;
