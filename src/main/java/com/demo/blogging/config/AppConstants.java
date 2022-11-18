@@ -13,7 +13,13 @@ public class AppConstants {
 	// security
 	public static String[] PUBLIC_URLS = { 
 												  "/blogging-app/auth/**",
-												  "/blogging-app/users/reg/"
+												  "/blogging-app/users/reg/",
+												  "/blogging-app/posts/**",
+												  "/v2/api-docs/**",
+												  "/v3/api-docs/**",
+												  "/swagger-resources/**",
+												  "/swagger-ui/**",
+												  "/webjars/**"
 	};
 
 }
