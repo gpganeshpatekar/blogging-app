@@ -8,7 +8,7 @@ import com.demo.blogging.payloads.PostResponse;
 public interface PostService {
 	
 // 		to create post 
-		PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
+		PostDto createPost(PostDto postDto, String username, Integer categoryId);
 //		to get all post
 		List<PostDto> getListOfPosts();
 //		to get all posts by pagination

@@ -2,6 +2,7 @@ package com.demo.blogging.controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,18 +43,19 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-	@Value("${project.image}")
+	@Value(AppConstants.IMAGE_PATH)
 	private String path;
 //	to create post 
-	@PostMapping(value="user/{id}/category/{categoryId}/posts",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasRole('NORMAL')")
+	@PostMapping(value="user/category/{categoryId}/posts",consumes = "application/json",produces = "application/json")
 	public ResponseEntity<PostDto> createPost(
 		   @Valid
 		   @RequestBody PostDto postDto,
-		   @PathVariable Integer id,
-		   @PathVariable Integer categoryId
+		   @PathVariable Integer categoryId,
+		   Principal principal
 		   )
 	{
-		PostDto createPost = this.postService.createPost(postDto, id, categoryId);
+		PostDto createPost = this.postService.createPost(postDto, principal.getName(), categoryId);
 		return new ResponseEntity<PostDto>(createPost,HttpStatus.CREATED);
 	}
 	
@@ -97,6 +100,7 @@ public class PostController {
 	}
 	
 //	to update post
+	@PreAuthorize("hasRole('NORMAL')")
 	@PutMapping(value = "/posts/{postId}")
 	public ResponseEntity<PostDto> updatePost(@PathVariable Integer postId, @Valid @RequestBody PostDto postDto){
 		PostDto updatePost = this.postService.updatePost(postDto, postId);
@@ -104,10 +108,11 @@ public class PostController {
 	}
 
 //	to delete post
+	@PreAuthorize("hasRole('NORMAL')")
 	@DeleteMapping("/posts/{postId}")
 	public ResponseEntity<ApiResponse> deletePost(@PathVariable Integer postId){
 		this.postService.deletePost(postId);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("post deleted successfully.",true),HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(new ApiResponse(AppConstants.DELETE_POST,true),HttpStatus.OK);
 	}
 	
 //	to search posts be keyword

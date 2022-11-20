@@ -10,6 +10,11 @@ import javax.validation.constraints.Size;
 import com.demo.blogging.entities.Category;
 import com.demo.blogging.entities.User;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PostDto {
 	
 	private Integer postId;
@@ -34,78 +39,9 @@ public class PostDto {
 	
 	private Set<CommentDto> comments = new HashSet<>();
 	
-	public Integer getPostId() {
-		return postId;
-	}
-
-	public void setPostId(Integer postId) {
-		this.postId = postId;
-	}
-
-	public String getPostTitle() {
-		return postTitle;
-	}
-
-	public void setPostTitle(String postTitle) {
-		this.postTitle = postTitle;
-	}
-
-	public String getPostContent() {
-		return postContent;
-	}
-
-	public void setPostContent(String postContent) {
-		this.postContent = postContent;
-	}
-
-	public String getPostImageName() {
-		return postImageName;
-	}
-
-	public void setPostImageName(String postImageName) {
-		this.postImageName = postImageName;
-	}
-
-	public CategoryDto getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryDto category) {
-		this.category = category;
-	}
-
-	public LocalDate getAddedDate() {
-		return addedDate;
-	}
-
-	public void setAddedDate(LocalDate addedDate) {
-		this.addedDate = addedDate;
-	}
-
-	public LocalDate getUpdatedDate() {
-		return updatedDate;
-	}
-
-	public void setUpdatedDate(LocalDate updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-
-	public UserDto getUser() {
-		return user;
-	}
-
-	public void setUser(UserDto user) {
-		this.user = user;
-	}
-
-	public Set<CommentDto> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<CommentDto> comments) {
-		this.comments = comments;
-	}
+	private Set<SubCommentDto> SubComments = new HashSet<>();
 	
+
 	
 	
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.blogging.config.AppConstants;
 import com.demo.blogging.payloads.ApiResponse;
 import com.demo.blogging.payloads.UserDto;
 import com.demo.blogging.services.UserService;
@@ -82,7 +83,7 @@ public class UserController {
 		userDto.setPassword(userDto.getPassword());
 		userDto.setAbout(userDto.getAbout());
 		UserDto deactive = this.userService.deactiveUser(id, userDto);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("user with user id "+id+" deleted successfully.",true), HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(new ApiResponse(AppConstants.DELETE_USER,true), HttpStatus.OK);
 	}
 //	to reactivate user
 	@PutMapping(value = "/active/{id}",produces = "application/json")
@@ -100,7 +101,7 @@ public class UserController {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer id) {
 		this.userService.deleteUser(id);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("user with user id "+id+" deleted successfully.",true), HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(new ApiResponse(AppConstants.DELETE_USER,true), HttpStatus.OK);
 	}
 
 }

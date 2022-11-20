@@ -55,7 +55,6 @@ public class BloggingApplication implements CommandLineRunner {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("User already there");
 			e.printStackTrace();
 		}
 		

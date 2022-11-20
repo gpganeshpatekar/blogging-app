@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.demo.blogging.config.AppConstants;
 import com.demo.blogging.entities.Category;
 import com.demo.blogging.entities.Post;
 import com.demo.blogging.entities.User;
@@ -39,9 +40,9 @@ public class PostServiceImpl implements PostService {
 
 //	to create post
 	@Override
-	public PostDto createPost(PostDto postDto, Integer userId, Integer categoryId) {
-		User user = this.userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
+	public PostDto createPost(PostDto postDto, String username, Integer categoryId) {
+		User user = this.userRepository.findByEmail(username)
+				.orElseThrow(() -> new ResourceNotFoundException(AppConstants.USER_NOT_FOUND+username));
 		Category category = this.categoryRepository.findById(categoryId)
 				.orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
 		Post post = this.modelMapper.map(postDto, Post.class);
